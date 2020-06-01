@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <login></login>
+    <!-- <login></login> -->
+    <!-- 路由占位符 -->
+    <router-view></router-view>
   </div>
 </template>
 <script>
-import login from './components/login'
+// import login from "./components/login";
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    login
+   // login
   }
-}
+};
 </script>
 
 <style lang="scss"></style>
