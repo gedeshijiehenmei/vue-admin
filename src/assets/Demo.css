@@ -1,4 +1,17 @@
-body{
-    background-color: aqua;
-    height: 100%;
+#app{
+    min-width: 1366px;
 }
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.box-card {
+    margin-top: 15px;
+  }
+  .el-table {
+    margin-top: 15px;
+  }
+/* .el-col{
+    margin: 0 !important;
+} */

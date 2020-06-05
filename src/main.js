@@ -8,7 +8,11 @@ import './assets/Demo.css'
 import axios from 'axios'
 // var xhr = new XMLHttpRequest();
 // xhr.withCredentials = true;
-axios.defaults.baseURL='http://localhost:3000'
+axios.defaults.baseURL='http://127.0.0.1:8888/api/private/v1/'
+axios.interceptors.request.use(config=>{
+  config.headers.Authorization=window.sessionStorage.getItem("token");
+  return config;
+})
 axios.defaults.withCredentials=false;
 Vue.prototype.$http=axios
 Vue.config.productionTip = false

@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" class="login">
     <div class="login-box">
       <div class="img-box">
         <img src="../assets/logo.png" />
@@ -38,8 +38,8 @@ export default {
   data() {
     return {
       loginFrom: {
-        username: "15102054856",
-        password: "123asd"
+        username: "admin",
+        password: "123456"
       },
       loginFromRules: {
         username: [
@@ -59,30 +59,26 @@ export default {
       this.$refs.loginFromRef.validate(async valid => {
         console.log(valid);
         if (!valid) return;
-        let data = {
-          username: this.loginFrom.username,
-          password: this.loginFrom.password
-        };
-        const result = await axios
-          .post("http://localhost:3000/login", data)
-          .then(res => {
-            console.log(res.data);
-            if (res.data.code == 200) {
+        // let data = {
+        //   username: this.loginFrom.username,
+        //   password: this.loginFrom.password
+        // };
+
+       const {data:res} = await this.$http.post('login',this.loginFrom)
+       console.log(res)        
+      
+            if (res.meta.status == 200) {
               this.$message({
-                message: res.data.msg,
+                message: res.meta.msg,
                 type: "success"
               });
-              window.sessionStorage.setItem('token',res.data.data.token);
+              window.sessionStorage.setItem('token',res.data.token);
               this.$router.push("/home")
             } else {
-              this.$message.error(res.data.msg);
+              this.$message.error(res.meta.msg);
             }
           })
-          .catch(err => {
-            console.log(err + "错误");
-          });
-      });
-    },
+              },
     //重置表单
     resetLoginFrom() {
       this.$refs.loginFromRef.resetFields();
@@ -91,6 +87,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.login{
+  background-color: aqua;
+  height: 100vh;
+}
 .login-box {
   width: 450px;
   height: 300px;

@@ -2,7 +2,15 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import login from "../components/login.vue";
 import Home from "../components/Home.vue";
-
+import Welcome from "../components/welcome.vue";
+import Users from "../components/userInfo.vue";
+import shopping from "../components/goods.vue";
+import rights from "../components/power/rights.vue";
+import roles from "../components/power/roles.vue";
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -17,7 +25,30 @@ const router = new VueRouter({
     },
     {
       path: "/home",
-      component: Home
+      component: Home,
+      redirect: "/welcome",
+      children: [
+        {
+          path: "/welcome",
+          component: Welcome
+        },
+        {
+          path: "/users",
+          component: Users
+        },
+        {
+          path: "/goods",
+          component: shopping
+        },
+        {
+          path: "/rights",
+          component: rights
+        },
+        {
+          path: "/roles",
+          component: roles
+        }
+      ]
     }
   ]
 });
