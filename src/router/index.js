@@ -7,6 +7,9 @@ import Users from "../components/userInfo.vue";
 import shopping from "../components/goods.vue";
 import rights from "../components/power/rights.vue";
 import roles from "../components/power/roles.vue";
+import GoodsList from "../components/goods/List.vue";
+import AddGoods from "../components/goods/AddGoods.vue";
+import Report from "../components/report/Report.vue";
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
@@ -38,7 +41,7 @@ const router = new VueRouter({
         },
         {
           path: "/goods",
-          component: shopping
+          component: GoodsList
         },
         {
           path: "/rights",
@@ -47,6 +50,14 @@ const router = new VueRouter({
         {
           path: "/roles",
           component: roles
+        },
+        {
+          path: "/good/add",
+          component: AddGoods
+        },
+        {
+          path: "/reports",
+          component: Report
         }
       ]
     }

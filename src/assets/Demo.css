@@ -15,3 +15,9 @@ body{
 /* .el-col{
     margin: 0 !important;
 } */
+.el-step__title{
+  font-size: 13px !important;
+}
+.ql-editor{
+  min-height: 300px;
+}
